@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Chip>
+    <Name>STM32F411CE</Name>
+    <Version>1.0</Version>
+    <Platform>A7M</Platform>
+    <Compatible>STM32F411CEU6,STM32F411CEU7,STM32F411CEY3,STM32F411CEY6</Compatible>
+    <Vendor>STMicroelectronics</Vendor>
+    <Vector>62</Vector>
+    <Region>8</Region>
+    <Iregion>0</Iregion>
+    <Dregion>0</Dregion>
+    <Coprocessor>FPV4_SP</Coprocessor>
+    <Attribute>
+        <CPU>CM4</CPU>
+        <Endian>Little</Endian>
+    </Attribute>
+    <Memory>
+        <M0>
+            <Base>0x08000000</Base>
+            <Size>0x00080000</Size>
+            <Type>Code</Type>
+            <Attribute>RXBCS</Attribute>
+        </M0>
+        <M1>
+            <Base>0x20000000</Base>
+            <Size>0x00020000</Size>
+            <Type>Data</Type>
+            <Attribute>RWXBCS</Attribute>
+        </M1>
+        <M2>
+            <Base>0x40000000</Base>
+            <Size>0x20000000</Size>
+            <Type>Device</Type>
+            <Attribute>RWS</Attribute>
+        </M2>
+        <M3>
+            <Base>0xE0000000</Base>
+            <Size>0x20000000</Size>
+            <Type>Device</Type>
+            <Attribute>RWS</Attribute>
+        </M3>
+    </Memory>
+    <Config>
+    </Config>
+</Chip>
