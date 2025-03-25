@@ -1,7 +1,7 @@
 /******************************************************************************
-Filename   : rvm_platform_stm32f411ce.h
-Author     : zxy
-Date       : 23/03/2025
+Filename   : rvm_platform_stm32f411re.h
+Author     : fb
+Date       : 26/06/2017
 Licence    : The Unlicense; see LICENSE for details.
 Description: The configuration file for STM32F411CE. The values listed here should
              be in accordance with that in the kernel.

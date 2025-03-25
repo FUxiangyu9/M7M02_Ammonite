@@ -1,39 +1,27 @@
 /******************************************************************************
-Filename    : rvm_test_stm32f405rg.h
-Author      : ryp.
-Date        : 27/07/2024
+Filename    : rvm_test_stm32f411ce.h
+Author      : fb
+Date        : 23/03/2024
 License     : Unlicense; see COPYING for details.
-Description : The test file for STM32F405RG.
+Description : The test file for STM32F411CE.
 
-ARMCC 6.19 -O3 (SysTick turned on, w/FPU context)
+ARMCC 6.18 -O3 (SysTick turned on, w/FPU context)
     ___  _   __ __  ___
    / _ \| | / //  |/  /    Feather-weight hypervisor
   / , _/| |/ // /|_/ /      Standard benchmark test
  /_/|_| |___//_/  /_/
 ====================================================
 Test (number in CPU cycles)        : AVG / MAX / MIN
-Yield (self, one-way)              : 324 / 532 / 324
-Signal (self)                      : 568 / 868 / 568
-Invocation (round-trip)            : 700 / 944 / 700
-Vector                             : 492 / 712 / 492
-Signal (intra)                     : 728 / 740 / 728
-Signal (inter)                     : 820 / 1044 / 784
-Yield (inter, one-way)             : 596 / 828 / 596
+Yield (self, one-way)              : 312 / 508 / 312
+Signal (self)                      : 554 / 760 / 554
+Invocation (round-trip)            : 688 / 930 / 688
+Vector                             : 442 / 636 / 442
+Signal (intra)                     : 596 / 802 / 596
+Signal (inter)                     : 660 / 856 / 660
+Yield (inter, one-way)             : 572 / 830 / 572
 
 GCC 13.2.1 -O3 (SysTick turned on, w/FPU context)
-    ___  _   __ __  ___
-   / _ \| | / //  |/  /    Feather-weight hypervisor
-  / , _/| |/ // /|_/ /      Standard benchmark test
- /_/|_| |___//_/  /_/
-====================================================
-Test (number in CPU cycles)        : AVG / MAX / MIN
-Yield (self, one-way)              : 332 / 352 / 332
-Signal (self)                      : 540 / 660 / 540
-Invocation (round-trip)            : 692 / 848 / 692
-Vector                             : 504 / 716 / 500
-Signal (intra)                     : 752 / 976 / 752
-Signal (inter)                     : 840 / 1060 / 792
-Yield (inter, one-way)             : 604 / 992 / 604
+TBD
 ******************************************************************************/
 
 /* Kernel Vector Handler *****************************************************/
@@ -45,7 +33,7 @@ Yield (inter, one-way)             : 604 / 992 / 604
 /* Hardware definitions so we don't rely on STM32 HAL */
 #define TIM4_SR                 *((volatile rme_u32_t*)(0x40000810U))
 #define TIM2_CNT                *((volatile rme_u32_t*)(0x40000024U))
-#define RME_CNT_READ()          ((rme_u16_t)((TIM2_CNT)<<1))
+#define RME_CNT_READ()          ((rme_u16_t)(TIM2_CNT))
 
     /* Clear timer flag */
     TIM4_SR=0U;
@@ -66,7 +54,7 @@ Yield (inter, one-way)             : 604 / 992 / 604
 #define START                   *((volatile rvm_u16_t*)(DATA_SHARED_SHARED1_BASE+RVM_WORD_BYTE))
 
 /* Counter read wrapper */
-#define RVM_CNT_READ()          ((rvm_tim_t)((TIM2_CNT)<<1))
+#define RVM_CNT_READ()          ((rvm_tim_t)(TIM2_CNT))
 /* Vector signal endpoint */
 #define SIG_VCT                 VCT_TIM4
 
@@ -99,7 +87,7 @@ Yield (inter, one-way)             : 604 / 992 / 604
 #define RVM_TIM_INIT() \
 do \
 { \
-    /* TIM2 clock = 1/2 CPU clock */ \
+    /* TIM2 clock = CPU clock */ \
     TIM2_CR1=TIM_COUNTERMODE_UP|TIM_CLOCKDIVISION_DIV1; \
     TIM2_ARR=(unsigned int)(-1); \
     TIM2_PSC=0U; \
@@ -118,9 +106,9 @@ do \
     RVM_ASSERT(RVM_A7M_Int_Local_Mod(KFN_INT_LOCAL_MOD,30U, \
                                      RVM_A7M_KFN_INT_LOCAL_MOD_PRIO_SET,0xFFU)==0); \
     \
-    /* TIM4 clock = 1/2 CPU clock */ \
-    TIM4_CR1=TIM_COUNTERMODE_DOWN|TIM_CLOCKDIVISION_DIV1; \
-    TIM4_ARR=16800U; \
+    /* TIM4 clock = CPU clock */ \
+    TIM4_CR1=TIM_COUNTERMODE_UP|TIM_CLOCKDIVISION_DIV1; \
+    TIM4_ARR=19200U; \
     TIM4_PSC=0U; \
     RCC_APB1ENR|=RCC_APB1ENR_TIM4; \
     TIM4_SR&=~0x01U; \

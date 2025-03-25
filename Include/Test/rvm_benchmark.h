@@ -20,7 +20,7 @@ typedef rvm_u16_t rvm_tim_t;
 #define DIFF            (Diff)
 
 /* Data definitions */
-#define RVM_TIME        ((rvm_tim_t)(END-START))
+#define RVM_TIME        ((rvm_tim_t)((rvm_tim_t)END-(rvm_tim_t)START))
 #define RVM_TOTAL()     (TOTAL+=(DIFF))
 #define RVM_MAX()       (MAX=((DIFF)>(MAX)?(DIFF):(MAX)))
 #define RVM_MIN()       (MIN=((DIFF)<(MIN)?(DIFF):(MIN)))

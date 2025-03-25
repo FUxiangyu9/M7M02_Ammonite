@@ -322,8 +322,8 @@
                 <M1>
                     <Name>Data1</Name>
                     <Base>Auto</Base>
-                    <Size>0x10000</Size>
-                    <Align>16</Align>
+                    <Size>0x8000</Size>
+                    <Align>15</Align>
                     <Type>Data</Type>
                     <Attribute>RWXBCS</Attribute>
                 </M1>
