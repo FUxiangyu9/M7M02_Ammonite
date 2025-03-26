@@ -20,8 +20,20 @@ Signal (intra)                     : 596 / 802 / 596
 Signal (inter)                     : 660 / 856 / 660
 Yield (inter, one-way)             : 572 / 830 / 572
 
-GCC 13.2.1 -O3 (SysTick turned on, w/FPU context)
-TBD
+GCC 13.2 -O3 (SysTick turned on, w/FPU context)
+    ___  _   __ __  ___
+   / _ \| | / //  |/  /    Feather-weight hypervisor
+  / , _/| |/ // /|_/ /      Standard benchmark test
+ /_/|_| |___//_/  /_/
+====================================================
+Test (number in CPU cycles)        : AVG / MAX / MIN
+Yield (self, one-way)              : 342 / 506 / 342
+Signal (self)                      : 526 / 696 / 526
+Invocation (round-trip)            : 678 / 852 / 678
+Vector                             : 446 / 618 / 446
+Signal (intra)                     : 572 / 744 / 572
+Signal (inter)                     : 660 / 830 / 660
+Yield (inter, one-way)             : 598 / 772 / 598
 ******************************************************************************/
 
 /* Kernel Vector Handler *****************************************************/
